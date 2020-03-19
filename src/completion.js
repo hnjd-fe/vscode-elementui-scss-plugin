@@ -1,23 +1,36 @@
 const vscode = require('vscode');
 const fs = require('fs');
 const { getProjectRootPath } = require('./util')
-
+let fileCache = {
+  scss: null,
+  js: null
+}
 function provideCompletionItems (document, position, token, context) {
   // console.log(document, position, token, context)
   // 获取匹配字符串的位置
+  let matchJsOrScss = 'scss';
   const line = document.lineAt(position);
   const lineText = line.text.substring(0, position.character);
+  if (lineText.length > 1 && lineText[lineText.indexOf('$') - 1] === '.') matchJsOrScss = 'js'
 
-  // 读取scss文件，暂时只获取根目录的index.scss，后续更新
-  const scssPath = `${getProjectRootPath(document)}/index.scss`
-  const scss = fs.readFileSync(scssPath, 'utf8')
-  const scssArr = scss.split(/\n/g).map(s => s.trim()).filter(s => !!s && s.includes('$'))
+  // 读取文件
+  if (!fileCache[matchJsOrScss]) {
+    const fileContent = fs.readFileSync(`${getProjectRootPath(document)}/node_modules/@qax/qax-ui/lib/scss-variable.${matchJsOrScss}`, 'utf8')
+    fileCache[matchJsOrScss] = fileContent
+      .split(/\n/g)
+      .map(s => s.trim())
+      .filter(s => s && s[s.length - 1] === ';')
+
+    if (matchJsOrScss === 'js') {
+      fileCache[matchJsOrScss] = fileCache[matchJsOrScss].map(s => s.slice(s.indexOf('$')))
+    }
+  }
 
   // 定义提示补全列表
-  const options = scssArr.map(s => {
-    const option = new vscode.CompletionItem(s, vscode.CompletionItemKind.Color)
+  const options = fileCache[matchJsOrScss].map(s => {
+    const option = new vscode.CompletionItem(s, s.includes('#') ? vscode.CompletionItemKind.Color : vscode.CompletionItemKind.Variable)
     const range = new vscode.Range(line._line, lineText.indexOf('$'), line._line, lineText.length - 1)
-    option.insertText = s.split(':')[0]
+    option.insertText = s.slice(s.indexOf('$'), matchJsOrScss === 'scss' ? s.indexOf(':') : s.indexOf('=')).trim()
     option.range = {
       replacing: range,
       inserting: range
@@ -31,7 +44,7 @@ function resolveCompletionItem () {
 }
 
 module.exports = function (context) {
-  context.subscriptions.push(vscode.languages.registerCompletionItemProvider(['vue', 'scss'], {
+  context.subscriptions.push(vscode.languages.registerCompletionItemProvider(['vue', 'javascript', 'scss'], {
     provideCompletionItems,
     resolveCompletionItem
   }, '$'));
