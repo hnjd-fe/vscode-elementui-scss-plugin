@@ -10,7 +10,9 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*"
+		"onLanguage:vue",
+		"onLanguage:javascript",
+		"onLanguage:scss"
 	],
 	"main": "./src/extension.js",
 	"contributes": {

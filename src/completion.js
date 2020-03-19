@@ -17,7 +17,7 @@ function provideCompletionItems (document, position, token, context) {
   const options = scssArr.map(s => {
     const option = new vscode.CompletionItem(s, vscode.CompletionItemKind.Color)
     const range = new vscode.Range(line._line, lineText.indexOf('$'), line._line, lineText.length - 1)
-    option.insertText = s.split(':')[0] + ';'
+    option.insertText = s.split(':')[0]
     option.range = {
       replacing: range,
       inserting: range
@@ -31,7 +31,7 @@ function resolveCompletionItem () {
 }
 
 module.exports = function (context) {
-  context.subscriptions.push(vscode.languages.registerCompletionItemProvider('vue', {
+  context.subscriptions.push(vscode.languages.registerCompletionItemProvider(['vue', 'scss'], {
     provideCompletionItems,
     resolveCompletionItem
   }, '$'));
