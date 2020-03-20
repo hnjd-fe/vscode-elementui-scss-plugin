@@ -9,9 +9,11 @@ function provideCompletionItems (document, position, token, context) {
   // console.log(document, position, token, context)
   // 获取匹配字符串的位置
   let matchJsOrScss = 'scss';
+  const character = position.character
   const line = document.lineAt(position);
-  const lineText = line.text.substring(0, position.character);
-  if (lineText.length > 1 && lineText[lineText.indexOf('$') - 1] === '.') matchJsOrScss = 'js'
+  const lineText = line.text.substring(0, character);
+  if (context.triggerCharacter === '_') matchJsOrScss = 'js'
+  if (character < 3 || lineText.slice(character - 3, character - 1) !== `$${context.triggerCharacter}`) return null
 
   // 读取文件
   if (!fileCache[matchJsOrScss]) {
@@ -47,5 +49,5 @@ module.exports = function (context) {
   context.subscriptions.push(vscode.languages.registerCompletionItemProvider(['vue', 'javascript', 'scss'], {
     provideCompletionItems,
     resolveCompletionItem
-  }, '$'));
+  }, '-', '_'));
 };
