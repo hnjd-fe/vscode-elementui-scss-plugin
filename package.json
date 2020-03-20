@@ -3,6 +3,11 @@
 	"displayName": "vscode-elementui-scss-plugin",
 	"description": "自动提示补全scss变量",
 	"version": "0.0.1",
+	"publisher": "afsfe-zhuhai",
+	"repository": {
+        "type": "git",
+        "url": "https://git-biz.qianxin-inc.cn/afsfe-zhuhai/infra/vscode-plugin/vscode-elementui-scss-plugin"
+    },
 	"engines": {
 		"vscode": "^1.43.0"
 	},
