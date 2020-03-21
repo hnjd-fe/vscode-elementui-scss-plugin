@@ -67,27 +67,20 @@ const CompletionObj = {
     const line = document.lineAt(position);
     const lineText = line.text.substring(0, character);
 
-    const editor = vscode.window.activeTextEditor;
-
-    const positionx = editor.selection.active;
     if (
       character < 1
     ) {
       return null;
     }
 
-    console.clear();
-    console.log( position.line, position.character, lineText )
-    console.log(  context.triggerCharacter, positionx )
-
     const targetPath = this._getVariableFilePath(document);
 
     const variableList = VARIABLE_FILE_CACHE[targetPath];
 
-    console.log( position )
-
     // 定义提示补全列表
     const options = variableList.map(s => {
+
+      const offsetPosition = position.character - 1;
       const option = new vscode.CompletionItem(
         s,
         s.includes("#")
@@ -96,14 +89,14 @@ const CompletionObj = {
       );
       const range = new vscode.Range(
         line._line,
-        lineText.lastIndexOf("$"),
+        lineText.indexOf("$", offsetPosition),
         line._line,
         lineText.length - 1
       );
-      console.clear();
-      console.log( line._line, lineText )
+      // console.clear();
+      // console.log( line._line, lineText, position.line, position.character )
       option.insertText = s
-        .slice(s.lastIndexOf("$")).replace( /([:= ]).+/, '')
+        .slice(s.indexOf("$")).replace( /([:= ]).+/, '')
         .trim();
       option.range = {
         replacing: range,
