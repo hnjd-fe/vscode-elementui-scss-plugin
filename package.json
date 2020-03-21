@@ -27,7 +27,7 @@
 		"lint": "eslint .",
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js",
-		"sync:var": "yarn && cp -f ./node_modules/@qax/qax-ui/lib/scss-variable.* ./src/assets"
+		"sync:var": "yarn && cp -f ./node_modules/@qax/qax-ui/lib/scss-variable.* ./src/assets && node ./script/sync-variables.js"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",

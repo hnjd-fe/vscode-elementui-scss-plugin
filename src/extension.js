@@ -12,7 +12,7 @@ const TARGET_VARIABLE_DIR_STR = path.resolve( ROOT, 'src/assets')
 // @qax/qax-ui变量文件名
 const TARGET_VARIABLE_FILE_STR = "scss-variable";
 // 变量内容缓存map
-const VARIABLE_FILE_CACHE = {};
+const VARIABLE_FILE_CACHE = require( './assets/scss-variable.json');
 
 const CompletionObj = {
   /**
@@ -23,42 +23,7 @@ const CompletionObj = {
    */
   _getVariableFilePath(document) {
     let targetPath = TARGET_VARIABLE_DIR_STR;
-    if (targetPath && !VARIABLE_FILE_CACHE[targetPath]) {
-      this._setVariableCache(targetPath);
-    }
     return targetPath;
-  },
-  /**
-   * 设置qax-ui主题变量缓存
-   * @param {*} target_path @qax/qax-ui依赖npm包的文件路径
-   */
-  _setVariableCache(target_path) {
-    const jsFilename = `${target_path}${OS_SEP}${TARGET_VARIABLE_FILE_STR}.js`;
-    const scssFilename = `${target_path}${OS_SEP}${TARGET_VARIABLE_FILE_STR}.scss`;
-
-    VARIABLE_FILE_CACHE[target_path] = [];
-    if (fs.existsSync(jsFilename)) {
-      const content = fs.readFileSync(jsFilename, "utf8");
-      VARIABLE_FILE_CACHE[target_path].push(...content
-        .replace(/(.*)\n/g, function(m, g) {
-          const result = /export const ([^;]*;$)/.exec(g);
-          return result ? result[1] : "";
-        })
-        .split(";"));
-    }
-
-    if (fs.existsSync(scssFilename)) {
-      const content = fs.readFileSync(scssFilename, "utf8");
-      VARIABLE_FILE_CACHE[target_path].push(...content
-        .replace(/(.*)\n/g, function(m, g) {
-          if (/\$--[^;]*;$/.test(g)) {
-            return g;
-          } else {
-            return "";
-          }
-        })
-        .split(";"));
-    }
   },
   _provideCompletionItems(document, position, token, context) {
     // 获取匹配字符串的位置
@@ -67,15 +32,11 @@ const CompletionObj = {
     const line = document.lineAt(position);
     const lineText = line.text.substring(0, character);
 
-    if (
-      character < 1
-    ) {
+    if (character < 1) {
       return null;
     }
 
-    const targetPath = this._getVariableFilePath(document);
-
-    const variableList = VARIABLE_FILE_CACHE[targetPath];
+    const variableList = VARIABLE_FILE_CACHE;
 
     // 定义提示补全列表
     const options = variableList.map(s => {
