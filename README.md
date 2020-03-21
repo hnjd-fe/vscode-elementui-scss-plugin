@@ -1,4 +1,4 @@
-# vscode element-ui qax-ui 主题 scss 变量自动补全插件
+# vscode element-ui 主题 qax-ui scss 变量自动补全插件
 
 ## 补全 scss
 ```sass
