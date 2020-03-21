@@ -36,20 +36,20 @@ const CompletionObj = {
     const jsFilename = `${target_path}${OS_SEP}${TARGET_VARIABLE_FILE_STR}.js`;
     const scssFilename = `${target_path}${OS_SEP}${TARGET_VARIABLE_FILE_STR}.scss`;
 
-    VARIABLE_FILE_CACHE[target_path] = {};
+    VARIABLE_FILE_CACHE[target_path] = [];
     if (fs.existsSync(jsFilename)) {
       const content = fs.readFileSync(jsFilename, "utf8");
-      VARIABLE_FILE_CACHE[target_path]["js"] = content
+      VARIABLE_FILE_CACHE[target_path].push(...content
         .replace(/(.*)\n/g, function(m, g) {
           const result = /export const ([^;]*;$)/.exec(g);
           return result ? result[1] : "";
         })
-        .split(";");
+        .split(";"));
     }
 
     if (fs.existsSync(scssFilename)) {
       const content = fs.readFileSync(scssFilename, "utf8");
-      VARIABLE_FILE_CACHE[target_path]["scss"] = content
+      VARIABLE_FILE_CACHE[target_path].push(...content
         .replace(/(.*)\n/g, function(m, g) {
           if (/\$--[^;]*;$/.test(g)) {
             return g;
@@ -57,36 +57,34 @@ const CompletionObj = {
             return "";
           }
         })
-        .split(";");
+        .split(";"));
     }
   },
   _provideCompletionItems(document, position, token, context) {
     // 获取匹配字符串的位置
+
     const character = position.character;
     const line = document.lineAt(position);
     const lineText = line.text.substring(0, character);
+
+    const editor = vscode.window.activeTextEditor;
+
+    const positionx = editor.selection.active;
     if (
-      character < 3 ||
-      lineText.slice(character - 3, character - 1) !==
-        `$${context.triggerCharacter}`
+      character < 1
     ) {
       return null;
     }
 
+    console.clear();
+    console.log( position.line, position.character, lineText )
+    console.log(  context.triggerCharacter, positionx )
+
     const targetPath = this._getVariableFilePath(document);
-    if (!targetPath) {
-      vscode.window.showInformationMessage(
-        "若要使用qax主题变量提示，请安装 @qax/qax-ui"
-      );
-      return null;
-    }
 
-    let targetType = "scss";
-    if (context.triggerCharacter === "_") {
-      targetType = "js";
-    }
+    const variableList = VARIABLE_FILE_CACHE[targetPath];
 
-    const variableList = VARIABLE_FILE_CACHE[targetPath][targetType];
+    console.log( position )
 
     // 定义提示补全列表
     const options = variableList.map(s => {
@@ -98,15 +96,14 @@ const CompletionObj = {
       );
       const range = new vscode.Range(
         line._line,
-        lineText.indexOf("$"),
+        lineText.lastIndexOf("$"),
         line._line,
         lineText.length - 1
       );
+      console.clear();
+      console.log( line._line, lineText )
       option.insertText = s
-        .slice(
-          s.indexOf("$"),
-          targetType === "scss" ? s.indexOf(":") : s.indexOf("=")
-        )
+        .slice(s.lastIndexOf("$")).replace( /([:= ]).+/, '')
         .trim();
       option.range = {
         replacing: range,
@@ -144,8 +141,7 @@ exports.activate = function(context) {
         provideCompletionItems,
         resolveCompletionItem
       },
-      "-",
-      "_"
+      "$"
     )
   );
 };
