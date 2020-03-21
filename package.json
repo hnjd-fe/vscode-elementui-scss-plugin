@@ -1,6 +1,6 @@
 {
 	"name": "vscode-elementui-scss-plugin",
-	"version": "2.13.0.1",
+	"version": "21300.42.1",
 	"displayName": "vscode element-ui 主题 qax-ui scss 变量自动补全插件",
 	"description": "自动提示补全scss变量",
 	"publisher": "afsfe-zhuhai",
