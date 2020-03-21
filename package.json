@@ -6,7 +6,7 @@
 	"publisher": "afsfe-zhuhai",
 	"repository": {
 		"type": "git",
-		"url": "https://git-biz.qianxin-inc.cn/afsfe-zhuhai/infra/vscode-plugin/vscode-elementui-scss-plugin"
+		"url": "https://github.com/openjavascript/vscode-elementui-scss-plugin.git"
 	},
 	"engines": {
 		"vscode": "^1.43.0"
