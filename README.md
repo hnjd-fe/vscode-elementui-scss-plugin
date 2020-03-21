@@ -1,15 +1,13 @@
-# vscode-elementui-scss-plugin
+# vscode element-ui scss 变量自动补全插件
 
-## vscode element-ui scss 变量自动补全插件
-
-### 补全 scss
+## 补全 scss
 ```sass
 $-
 ```
 
 scss 补齐字符  $--
 
-### 补全 js
+## 补全 js
 ```javascript
 $_
 ```
