@@ -1,8 +1,9 @@
-# Change Log
+# Change Log - vscode element-ui 主题 qax-ui scss 变量自动补全插件
 
-All notable changes to the "vscode-plugin" extension will be documented in this file.
+## 2.13.0-1"
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+发布第一个版本
+
 
 ## [Unreleased]
 
