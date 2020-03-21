@@ -1,32 +1,12 @@
 const vscode = require("vscode");
-const fs = require("fs");
-const path = require("path");
-const ROOT = path.resolve( __dirname, '..');
 
-// 路径片段分隔符
-const OS_SEP = path.sep;
-// @qax/qax-ui变量相对node_modules路径
-const TARGET_VARIABLE_DIR_STR = path.resolve( ROOT, 'src/assets')
-  .split("/")
-  .join(OS_SEP);
-// @qax/qax-ui变量文件名
-const TARGET_VARIABLE_FILE_STR = "scss-variable";
 // 变量内容缓存map
 const VARIABLE_FILE_CACHE = require( './assets/scss-variable.json');
 
 const CompletionObj = {
-  /**
-   * 获取@qax/qax-ui依赖npm包的文件路径
-   * @param {*} document
-   * @return
-   * 返回安装@qax/qax-ui依赖npm包的文件路径
-   */
-  _getVariableFilePath(document) {
-    let targetPath = TARGET_VARIABLE_DIR_STR;
-    return targetPath;
-  },
   _provideCompletionItems(document, position, token, context) {
     // 获取匹配字符串的位置
+    console.log( token, context )
 
     const character = position.character;
     const line = document.lineAt(position);

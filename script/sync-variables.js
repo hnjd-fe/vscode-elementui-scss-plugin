@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const ROOT = path.resolve( __dirname, '..');
-const OS_SEP = path.sep;
 
 const TARGET_VARIABLE_DIR_STR = path.resolve( ROOT, 'src/assets');
 // @qax/qax-ui变量文件名

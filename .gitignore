@@ -3,5 +3,5 @@ node_modules
 *.vsix
 
 yarn.lock
-yarn.error
+yarn-error.log
 package-lock.json
