@@ -2,7 +2,7 @@
 	"name": "vscode-elementui-scss-plugin",
 	"displayName": "vscode-elementui-scss-plugin",
 	"description": "自动提示补全scss变量",
-	"version": "0.0.1",
+	"version": "2.13.0-1",
 	"publisher": "afsfe-zhuhai",
 	"repository": {
 		"type": "git",
