@@ -1,11 +1,12 @@
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
+const ROOT = path.resolve( __dirname, '..');
 
 // 路径片段分隔符
 const OS_SEP = path.sep;
 // @qax/qax-ui变量相对node_modules路径
-const TARGET_VARIABLE_DIR_STR = "node_modules/@qax/qax-ui/lib"
+const TARGET_VARIABLE_DIR_STR = path.resolve( ROOT, 'src/assets')
   .split("/")
   .join(OS_SEP);
 // @qax/qax-ui变量文件名
@@ -21,25 +22,7 @@ const CompletionObj = {
    * 返回安装@qax/qax-ui依赖npm包的文件路径
    */
   _getVariableFilePath(document) {
-    let currentDir = path.dirname(document.fileName);
-    const dirArr = currentDir.split(OS_SEP);
-    let len = dirArr.length;
-    let targetPath = "";
-
-    while (len--) {
-      try {
-        let _path = `${currentDir}${OS_SEP}${TARGET_VARIABLE_DIR_STR}`;
-        fs.accessSync(_path, fs.constants.R_OK);
-        targetPath = _path;
-        break;
-      } catch (err) {
-        dirArr.pop();
-        currentDir = dirArr.join(OS_SEP);
-      }
-    }
-
-    //TODO: 在yarn || npm 全局安装目录读取相关变量文件
-
+    let targetPath = TARGET_VARIABLE_DIR_STR;
     if (targetPath && !VARIABLE_FILE_CACHE[targetPath]) {
       this._setVariableCache(targetPath);
     }

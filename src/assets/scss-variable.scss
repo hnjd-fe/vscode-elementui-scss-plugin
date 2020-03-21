@@ -1,0 +1,1403 @@
+// transition.scss
+/* Transition
+-------------------------- */
+$--all-transition: all .3s cubic-bezier(.645,.045,.355,1) !default;
+$--fade-transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--fade-linear-transition: opacity 200ms linear !default;
+$--md-fade-transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--border-transition-base: border-color .2s cubic-bezier(.645,.045,.355,1) !default;
+$--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
+
+
+// color.scss
+/* Color
+-------------------------- */
+$--brand-dark: #333333 !default;
+$--brand-grey: #666666 !default;
+$--gray-light: #999999 !default;
+
+/// color|1|Brand Color|0
+$--color-primary: #008DFF !default;
+/// color|1|Brand Color|0
+$--color-hover: #1495ff !default;
+$--color-hover-background: #F5F5F5!default;
+/// color|1|Background Color|4
+$--color-white: #FFFFFF !default;
+/// color|1|Background Color|4
+$--color-black: $--brand-dark !default;
+/// color|1|Background Color|4
+$--color-gray: $--brand-grey !default;
+/// color|1|Background Color|4
+$--color-background: #F1F2F6 !default;
+
+/// color|1|Functional Color|1
+$--color-danger: #FF4C4C !default;
+/// color|1|Functional Color|1
+$--color-warning: #FF8200 !default;
+/// color|1|Functional Color|1
+$--color-success: #23AC38 !default;
+/// color|1|Functional Color|1
+$--color-info: #008DFF !default;
+
+$--brand-primary: $--color-primary;
+$--brand-success: $--color-success;
+$--brand-info: $--color-info;
+$--brand-warning: $--color-warning;
+$--brand-danger: $--color-danger;
+
+$--color-dark-white: color(var(--color-white) blend(var(--color-primary) 2%)) !default;
+$--color-base-black: color(var(--color-primary) h(+6) s(33%) l(18%)) !default;
+$--color-light-black: color(var(--color-base-black) h(+5) s(27%) l(27%)) !default;
+$--color-extra-light-black: color(var(--color-base-black) h(+2) s(19%) l(35%)) !default;
+
+$--color-base-silver: color(var(--color-base-black) h(+3) s(16%) l(58%)) !default;
+$--color-light-silver: color(var(--color-base-black) h(+3) s(23%) l(67%)) !default;
+$--color-extra-light-silver: color(var(--color-base-black) s(1%) l(80%)) !default;
+
+$--color-base-gray: $--brand-grey !default;
+$--color-light-gray: $--gray-light !default;
+$--color-extra-light-gray: #ededed !default;
+
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; /* 8cc5ff */
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; /* a0cfff */
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /* b3d8ff */
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* c6e2ff */
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
+
+$--color-success-light: mix($--color-white, $--color-success, 80%) !default;
+$--color-warning-light: mix($--color-white, $--color-warning, 80%) !default;
+$--color-danger-light: mix($--color-white, $--color-danger, 80%) !default;
+$--color-info-light: mix($--color-white, $--color-info, 80%) !default;
+
+$--color-success-lighter: mix($--color-white, $--color-success, 90%) !default;
+$--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
+$--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
+// $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
+$--color-info-lighter: $--color-white !default;
+/// color|1|Font Color|2
+$--color-text-primary: $--brand-dark !default;
+/// color|1|Font Color|2
+$--color-text-regular: $--brand-dark !default;
+/// color|1|Font Color|2
+$--color-text-secondary: $--brand-grey!default;
+/// color|1|Font Color|2
+$--color-text-placeholder: #B8B8B8 !default;
+/// color|1|Border Color|3
+$--border-color-base: #E6E6E6 !default;
+/// color|1|Border Color|3
+$--border-color-light: #E4E7ED !default;
+/// color|1|Border Color|3
+$--border-color-lighter: #E7EAF0 !default;
+/// color|1|Border Color|3
+$--border-color-extra-light: #F2F6FC !default;
+
+// Background
+/// color|1|Background Color|4
+$--background-color-base: $--color-hover-background !default;
+$--background-color-head-base: #F9F9F9 !default;
+
+/* Link
+-------------------------- */
+$--link-color: $--color-primary-light-2 !default;
+$--link-hover-color: $--color-hover !default;
+
+
+/* Fill
+-------------------------- */
+$--fill-base: $--color-white !default;
+
+/* Icon
+-------------------------- */
+$--icon-color: $--brand-grey !default;
+$--icon-text-color: $--color-white !default;
+$--icon-color-base: $--color-info !default;
+
+/* Disable base
+-------------------------- */
+$--disabled-fill-base: $--background-color-base !default;
+$--disabled-color-base: $--color-text-placeholder !default;
+$--font-color-disabled-base: #BBB !default;
+
+/* Risk revel
+-------------------------- */
+$--color-status-risk-level-0: $--color-danger !default;
+$--color-status-risk-level-1: #FF7F00 !default;
+$--color-status-risk-level-2: #FFBF00 !default;
+$--color-status-risk-level-3: $--color-primary !default;
+
+/* Risk revel
+-------------------------- */
+$--color-status-control-0: #5BC49F !default;
+$--color-status-control-1: #FF7D7D !default;
+$--color-status-control-2: #9287E7 !default;
+$--color-status-control-3: #FEB64E !default;
+$--color-status-control-4: #60ACFC !default;
+$--color-status-control-5: #D8D8D8 !default;
+
+// size.scss
+/* Size
+-------------------------- */
+$--size-extra-large: 28px !default;
+$--size-large: 18px !default;
+$--size-medium: 16px !default;
+$--size-base: 14px !default;
+$--size-small: 12px !default;
+$--size-mini: 12px !default;
+$--size-zero: 0 !default;
+
+$--height-extrap-large: 40px !default;
+$--height-large: 36px !default;
+$--height-medium: 36px !default;
+$--height-base: 28px !default;
+$--height-small: 24px !default;
+$--height-mini: 20px !default;
+$--height-extra-mini: 16px !default;
+$--height-zero: $--size-zero !default;
+
+$--header-height-base: $--height-extrap-large !default;
+$--row-height-base: $--height-extrap-large !default;
+
+$--width-extrap-large: 270px !default;
+$--width-large: 160px !default;
+$--width-medium: 90px !default;
+$--width-extra-base: 80px !default;
+$--width-base: 60px !default;
+$--width-small: 24px !default;
+$--width-mini: 10px !default;
+$--width-zero: 0px !default;
+
+$--padding-extra-large: 36px !default;
+$--padding-large: 32px !default;
+$--padding-medium: 20!default;
+$--padding-base: 16px !default;
+$--padding-small: 12px !default;
+$--padding-mini: 8px !default;
+$--padding-extra-mini: 4px !default;
+$--padding-zero: 0px !default;
+
+$--padding-inside-extra-large: 40px !default;
+$--padding-inside-large: 30px !default;
+$--padding-inside-medium: 20!default;
+$--padding-inside-base: 15px !default;
+$--padding-inside-small: 10px !default;
+$--padding-inside-mini: 5px !default;
+
+$--margin-extra-large: 36px !default;
+$--margin-large: 32px !default;
+$--margin-medium: 20px!default;
+$--margin-base: 16px !default;
+$--margin-small: 12px !default;
+$--margin-mini: 8px !default;
+$--margin-extra-mini: 4px !default;
+$--margin-zero: 0px !default;
+
+/* z-index
+-------------------------- */
+$--index-normal: 1 !default;
+$--index-top: 1000 !default;
+$--index-popper: 2000 !default;
+
+/* Main
+--------------------------*/
+$--main-padding: 0 $--padding-medium !default;
+
+/* Header
+  --------------------------*/
+$--header-padding: $--main-padding !default;
+
+/* Footer
+--------------------------*/
+$--footer-padding: $--main-padding!default;
+
+/* Popup
+--------------------------*/
+$--size-popup-medium-width: 900px !default;
+$--size-popup-medium-height: 503px !default;
+
+$--size-popup-base-width: 600px !default;
+$--size-popup-base-height: 420px !default;
+
+$--size-popup-samll-width: 210px !default;
+$--size-popup-samll-height: 90px !default;
+
+$--size-popup-mini-width: 600px!default;
+$--size-popup-mini-height: auto !default;
+$--size-popup-mini-line-height: 40px !default;
+
+$--size-popup-extra-mini-width: 153px!default;
+$--size-popup-extra-mini-height: auto !default;
+$--size-popup-extra-mini-line-height: 30px !default;
+
+
+/* Break-point
+--------------------------*/
+$--sm: 768px !default;
+$--md: 992px !default;
+$--lg: 1200px !default;
+$--xl: 1920px !default;
+
+$--breakpoints: (
+  'xs' : (max-width: $--sm - 1),
+  'sm' : (min-width: $--sm),
+  'md' : (min-width: $--md),
+  'lg' : (min-width: $--lg),
+  'xl' : (min-width: $--xl)
+);
+
+$--breakpoints-spec: (
+  'xs-only' : (max-width: $--sm - 1),
+  'sm-and-up' : (min-width: $--sm),
+  'sm-only': "(min-width: #{$--sm}) and (max-width: #{$--md - 1})",
+  'sm-and-down': (max-width: $--md - 1),
+  'md-and-up' : (min-width: $--md),
+  'md-only': "(min-width: #{$--md}) and (max-width: #{$--lg - 1})",
+  'md-and-down': (max-width: $--lg - 1),
+  'lg-and-up' : (min-width: $--lg),
+  'lg-only': "(min-width: #{$--lg}) and (max-width: #{$--xl - 1})",
+  'lg-and-down': (max-width: $--xl - 1),
+  'xl-only' : (min-width: $--xl),
+);
+
+// deprecated
+$--height-mini-small: $--height-extra-mini !default;
+$--width-base-large: $--width-extra-base !default;
+$--padding-mini-small: $--padding-extra-mini !default;
+$--margin-mini-small: $--margin-extra-mini !default;
+
+// text.scss
+/* Typography
+-------------------------- */
+$--font-path: 'fonts' !default;
+$--font-display: 'auto' !default;
+/// fontSize|1|Font Size|0
+$--font-size-extra-large: 16px !default;
+/// fontSize|1|Font Size|0
+$--font-size-large: 14px !default;
+/// fontSize|1|Font Size|0
+$--font-size-medium: 14px !default;
+/// fontSize|1|Font Size|0
+$--font-size-base: 12px !default;
+$--font-size-base-header: 14px !default;
+/// fontSize|1|Font Size|0
+$--font-size-small: 13px !default;
+$--font-size-mini: 12px !default;
+/// fontSize|1|Font Size|0
+$--font-size-extra-small: 12px !default;
+/// fontWeight|1|Font Weight|1
+$--font-weight-primary: 400 !default;
+/// fontWeight|1|Font Weight|1
+$--font-weight-secondary: 100 !default;
+/// fontLineHeight|1|Line Height|2
+$--font-line-height-primary: 24px !default;
+/// fontLineHeight|1|Line Height|2
+$--font-line-height-secondary: 16px !default;
+
+$--font-size-h3: 20px !default;
+$--font-size-h2: 24px !default;
+$--font-size-h1: 32px !default;
+
+// corner.scss
+/* Corner
+-------------------------- */
+$--radius-extra-large: 36px !default;
+$--radius-large: 32px !default;
+$--radius-medium: 20!default;
+$--radius-base: 16px !default;
+$--radius-extra-base: 2px !default;
+$--radius-small: 12px !default;
+$--radius-extra-small: 8px !default;
+$--radius-mini: 4px !default;
+$--radius-extra-mini: 3px !default;
+$--radius-zero: 0px !default;
+
+$--radius-circle: 100% !default;
+
+/// borderRadius|1|Radius|0
+$--border-radius-base: $--radius-extra-base !default;
+/// borderRadius|1|Radius|0
+$--border-radius-small: $--radius-extra-base !default;
+/// borderRadius|1|Radius|0
+$--border-radius-circle: $--radius-circle !default;
+/// borderRadius|1|Radius|0
+$--border-radius-zero: $--radius-zero !default;
+
+// deprecated
+$--radius-small-mini: $--radius-extra-small !default;
+$--radius-mini-default: $--radius-extra-mini !default;
+$--radius-mini-small: $--radius-extra-base !default;
+
+// shadow.scss
+/* Shadow
+-------------------------- */
+// Box-shadow
+/// boxShadow|1|Shadow|1
+$--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
+// boxShadow|1|Shadow|1
+$--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
+/// boxShadow|1|Shadow|1
+$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+/// boxShadow|1|Shadow|1
+$--box-shadow-none: none !default;
+
+
+// border.scss
+/* Border
+-------------------------- */
+$--border-width-large: 3px !default;
+$--border-width-medium: 2px !default;
+$--border-width-base: 1px !default;
+$--border-width-zero: 0px !default;
+
+$--border-style-base: solid !default;
+$--border-color-hover: $--color-text-placeholder !default;
+
+$--border-large: $--border-width-large$--border-style-base $--border-color-base !default;
+$--border-medium: $--border-width-medium $--border-style-base $--border-color-base !default;
+$--border-base: $--border-width-base $--border-style-base $--border-color-base !default;
+$--border-zero: 0px !default;
+
+/* Disable base
+-------------------------- */
+$--disabled-border-base: $--border-color-light !default;
+
+
+// alert.scss
+/* Alert
+-------------------------- */
+$--alert-padding: $--padding-mini $--padding-base !default;
+/// borderRadius||Border|2
+$--alert-border-radius: $--border-radius-base !default;
+/// fontSize||Font|1
+$--alert-title-font-size: $--font-size-small !default;
+/// fontSize||Font|1
+$--alert-description-font-size: $--font-size-base !default;
+/// fontSize||Font|1
+$--alert-close-font-size: $--font-size-base !default;
+/// fontSize||Font|1
+$--alert-close-customed-font-size: $--font-size-small !default;
+$--alert-close-button-color: $--icon-color !default;
+$--alert-success-color: $--color-success-lighter !default;
+$--alert-info-color: $--color-info-lighter !default;
+$--alert-warning-color: $--color-warning-lighter !default;
+$--alert-danger-color: $--color-danger-lighter !default;
+/// height||Other|4
+$--alert-icon-size: $--size-medium !default;
+/// height||Other|4
+$--alert-icon-large-size: $--size-extra-large !default;
+
+
+
+// avatar.scss
+/* Avatar
+--------------------------*/
+/// color||Color|0
+$--avatar-font-color: $--icon-text-color !default;
+/// color||Color|0
+$--avatar-background-color: #C0C4CC !default;
+/// fontSize||Font Size|1
+$--avatar-text-font-size: $--font-size-large !default;
+/// fontSize||Font Size|1
+$--avatar-icon-font-size: $--font-size-extra-large !default;
+/// borderRadius||Border|2
+$--avatar-border-radius: $--border-radius-base !default;
+/// size|1|Avatar Size|3
+$--avatar-large-size: $--height-extrap-large !default;
+/// size|1|Avatar Size|3
+$--avatar-medium-size: $--height-large !default;
+/// size|1|Avatar Size|3
+$--avatar-small-size: $--height-base !default;
+
+
+// backtop.scss
+/* Backtop
+--------------------------*/
+/// color||Color|0
+$--backtop-background-color: $--color-white !default;
+/// color||Color|0
+$--backtop-font-color: $--color-primary !default;
+/// color||Color|0
+$--backtop-hover-background-color: $--border-color-extra-light !default;
+
+
+
+// badge.scss
+/* Badge
+-------------------------- */
+/// color||Color|0
+$--badge-background-color: $--color-danger !default;
+$--badge-radius: 10px !default;
+/// fontSize||Font|1
+$--badge-font-size: $--font-size-base !default;
+/// padding||Spacing|3
+$--badge-padding: 6px !default;
+/// height||Other|4
+$--badge-size: 18px !default;
+
+
+// button-group.scss
+/* Button Group
+-------------------------- */
+$--button-group-margin-left: $--margin-mini - 4;
+$--button-group-medium-margin-left: $--button-group-margin-left;
+$--button-group-small-margin-left: $--button-group-margin-left;
+$--button-group-mini-margin-left: $--button-group-margin-left;
+
+
+// button.scss
+/* Button
+-------------------------- */
+/// fontSize||Font|1
+$--button-font-size: $--font-size-base !default;
+/// fontWeight||Font|1
+$--button-font-weight: $--font-weight-primary !default;
+/// borderRadius||Border|2
+$--button-border-radius: $--border-radius-base !default;
+/// padding||Spacing|3
+$--button-padding-vertical: $--padding-zero !default;
+/// padding||Spacing|3
+$--button-padding-horizontal: $--padding-mini !default;
+
+/// fontSize||Font|1
+$--button-medium-font-size: $--font-size-large !default;
+/// borderRadius||Border|2
+$--button-medium-border-radius: $--border-radius-base !default;
+/// padding||Spacing|3
+$--button-medium-padding-vertical: $--padding-inside-small !default;
+/// padding||Spacing|3
+$--button-medium-padding-horizontal: $--padding-inside-medium !default;
+
+$--button-margin-left: $--margin-mini - 4;
+$--button-medium-margin-left: $--button-margin-left;
+$--button-small-margin-left: $--button-margin-left;
+$--button-mini-margin-left: $--button-margin-left;
+
+/// fontSize||Font|1
+$--button-small-font-size: $--font-size-base !default;
+$--button-small-border-radius: #{$--border-radius-base - 1} !default;
+/// padding||Spacing|3
+$--button-small-padding-vertical: $--padding-mini !default;
+/// padding||Spacing|3
+$--button-small-padding-horizontal: $--padding-base !default;
+/// fontSize||Font|1
+$--button-mini-font-size: $--font-size-base !default;
+$--button-mini-border-radius: #{$--border-radius-base - 1} !default;
+/// padding||Spacing|3
+$--button-mini-padding-vertical: $--padding-mini !default;
+/// padding||Spacing|3
+$--button-mini-padding-horizontal: $--padding-base !default;
+
+/// color||Color|0
+$--button-default-font-color: $--color-text-regular !default;
+/// color||Color|0
+$--button-default-background-color: $--color-white !default;
+/// color||Color|0
+$--button-default-border-color: $--border-color-base !default;
+
+/// color||Color|0
+$--button-disabled-font-color: $--color-text-placeholder !default;
+/// color||Color|0
+$--button-disabled-background-color: $--color-white !default;
+/// color||Color|0
+$--button-disabled-border-color: $--border-color-lighter !default;
+
+/// color||Color|0
+$--button-primary-border-color: $--color-primary !default;
+/// color||Color|0
+$--button-primary-font-color: $--color-white !default;
+/// color||Color|0
+$--button-primary-background-color: $--color-primary !default;
+/// color||Color|0
+$--button-success-border-color: $--color-success !default;
+/// color||Color|0
+$--button-success-font-color: $--color-white !default;
+/// color||Color|0
+$--button-success-background-color: $--color-success !default;
+/// color||Color|0
+$--button-warning-border-color: $--color-warning !default;
+/// color||Color|0
+$--button-warning-font-color: $--color-white !default;
+/// color||Color|0
+$--button-warning-background-color: $--color-warning !default;
+/// color||Color|0
+$--button-danger-border-color: $--color-danger !default;
+/// color||Color|0
+$--button-danger-font-color: $--color-white !default;
+/// color||Color|0
+$--button-danger-background-color: $--color-danger !default;
+/// color||Color|0
+$--button-info-border-color: $--color-info !default;
+/// color||Color|0
+$--button-info-font-color: $--color-white !default;
+/// color||Color|0
+$--button-info-background-color: $--color-info !default;
+
+$--button-hover-tint-percent: 20% !default;
+$--button-active-shade-percent: 10% !default;
+
+$--button-min-width: $--width-base !default;
+$--button-small-min-width: $--width-base !default;
+$--button-large-min-width: $--width-base-large !default;
+
+$--button-large-height: $--height-large !default;
+$--button-medium-height: $--height-medium!default;
+$--button-default-height: $--height-base!default;
+$--button-small-height: $--height-base!default;
+$--button-mini-height: $--height-small!default;
+
+// calendar.scss
+/* Calendar
+--------------------------*/
+/// border||Other|4
+$--calendar-border: $--border-base !default;
+/// color||Other|4
+$--calendar-selected-background-color: $--color-hover-background !default;
+$--calendar-cell-width: $--width-medium - 5 !default;
+
+
+// card.scss
+/* Card
+--------------------------*/
+/// color||Color|0
+$--card-border-color: $--border-color-lighter !default;
+$--card-border-radius: $--radius-zero !default;
+$--card-box-shadow: $--box-shadow-none !default; 
+$--card-header-font-size: $--font-size-large !default;
+/// padding||Spacing|3
+$--card-padding: $--padding-base!default;
+$--card-box-padding: $--padding-zero $--padding-base!default;
+$--card-header-padding: $--padding-zero!default;
+$--card-body-padding: $--padding-base $--padding-zero!default;
+$--card-line-height: $--height-medium !default;
+///border
+$--card-border-width: $--width-zero !default;
+
+// carousel.scss
+/* Carousel
+--------------------------*/
+/// fontSize||Font|1
+$--carousel-arrow-font-size: $--font-size-base !default;
+$--carousel-arrow-size: $--height-large !default;
+$--carousel-arrow-background: rgba(31, 45, 61, 0.11) !default;
+$--carousel-arrow-hover-background: rgba(31, 45, 61, 0.23) !default;
+/// width||Other|4
+$--carousel-indicator-width: $--width-base / 2 !default;
+/// height||Other|4
+$--carousel-indicator-height: 2px !default;
+$--carousel-indicator-padding-horizontal: $--padding-mini-small !default;
+$--carousel-indicator-padding-vertical: $--padding-small !default;
+$--carousel-indicator-out-color: $--border-color-hover !default;
+
+
+// cascader.scss
+/* Cascader
+-------------------------- */
+/// color||Color|0
+$--cascader-menu-font-color: $--color-text-regular !default;
+/// color||Color|0
+$--cascader-menu-selected-font-color: $--color-primary !default;
+$--cascader-menu-fill: $--fill-base !default;
+$--cascader-menu-font-size: $--font-size-base !default;
+$--cascader-menu-radius: $--border-radius-base !default;
+$--cascader-menu-border: solid 1px $--border-color-light !default;
+$--cascader-menu-shadow: $--box-shadow-light !default;
+$--cascader-node-background-hover: $--background-color-base !default;
+$--cascader-node-color-disabled:$--color-text-placeholder !default;
+$--cascader-color-empty:$--color-text-placeholder !default;
+$--cascader-tag-background: #f0f2f5;
+$--cascader-margin-left: $--margin-mini;
+/* cascader
+-------------------------- */
+$--cascader-height: 200px !default;
+
+
+// checkbox-group.scss
+/* Checkbox Group
+-------------------------- */
+$--checkbox-group-margin-left: $--margin-mini;
+$--checkbox-group-medium-margin-left: $--checkbox-group-margin-left;
+$--checkbox-group-small-margin-left: $--checkbox-group-margin-left;
+$--checkbox-group-mini-margin-left: $--checkbox-group-margin-left;
+
+
+// checkbox.scss
+/* Checkbox
+-------------------------- */
+/// fontSize||Font|1
+$--checkbox-font-size: $--font-size-base !default;
+/// fontWeight||Font|1
+$--checkbox-font-weight: $--font-weight-primary !default;
+/// color||Color|0
+$--checkbox-font-color:  $--brand-grey !default;
+$--checkbox-input-height: $--size-base !default;
+$--checkbox-input-width: $--size-base !default;
+/// borderRadius||Border|2
+$--checkbox-border-radius: $--border-radius-small !default;
+/// color||Color|0
+$--checkbox-background-color: $--color-white !default;
+$--checkbox-input-border: $--border-base !default;
+
+/// color||Color|0
+$--checkbox-disabled-border-color: $--border-color-base !default;
+$--checkbox-disabled-input-fill: #edf2fc !default;
+$--checkbox-disabled-icon-color: $--color-text-placeholder !default;
+
+$--checkbox-disabled-checked-input-fill: $--border-color-extra-light !default;
+$--checkbox-disabled-checked-input-border-color: $--border-color-base !default;
+$--checkbox-disabled-checked-icon-color: $--color-text-placeholder !default;
+
+$--checkbox-margin-left: 0 !default;
+$--checkbox-margin-right: 8px !default;
+
+/// color||Color|0
+$--checkbox-checked-font-color: $--brand-grey !default;
+$--checkbox-checked-input-border-color: $--color-primary !default;
+/// color||Color|0
+$--checkbox-checked-background-color: $--color-primary !default;
+$--checkbox-checked-icon-color: $--fill-base !default;
+
+$--checkbox-padding-left: 8px !default;
+$--checkbox-display: inline-flex !default;
+
+$--checkbox-input-border-color-hover: $--color-primary !default;
+/// height||Other|4
+$--checkbox-bordered-height: $--height-small !default;
+/// padding||Spacing|3
+$--checkbox-bordered-padding: 0px $--padding-inside-base !default;
+/// padding||Spacing|3
+$--checkbox-bordered-medium-padding: 0px $--padding-inside-base !default;
+/// padding||Spacing|3
+$--checkbox-bordered-small-padding: 0px $--padding-inside-base !default;
+/// padding||Spacing|3
+$--checkbox-bordered-mini-padding: 0px $--padding-inside-base !default;
+$--checkbox-bordered-medium-input-height: $--size-base !default;
+$--checkbox-bordered-medium-input-width: $--size-base !default;
+/// height||Other|4
+$--checkbox-bordered-medium-height: $--height-large !default;
+$--checkbox-bordered-small-input-height: 12px !default;
+$--checkbox-bordered-small-input-width: 12px !default;
+/// height||Other|4
+$--checkbox-bordered-small-height: $--height-base !default;
+$--checkbox-bordered-mini-input-height: 12px !default;
+$--checkbox-bordered-mini-input-width: 12px !default;
+/// height||Other|4
+$--checkbox-bordered-mini-height: $--height-small !default;
+
+/// color||Color|0
+$--checkbox-button-checked-background-color: $--color-primary !default;
+/// color||Color|0
+$--checkbox-button-checked-font-color: $--color-white !default;
+/// color||Color|0
+$--checkbox-button-checked-border-color: $--color-primary !default;
+
+// collapse.scss
+/* Collapse
+--------------------------*/
+/// color||Color|0
+$--collapse-border-color: $--border-color-lighter !default;
+/// height||Other|4
+$--collapse-header-height: 48px !default;
+/// color||Color|0
+$--collapse-header-background-color: $--color-white !default;
+/// color||Color|0
+$--collapse-header-font-color: $--color-text-primary !default;
+/// fontSize||Font|1
+$--collapse-header-font-size: 13px !default;
+/// color||Color|0
+$--collapse-content-background-color: $--color-white !default;
+/// fontSize||Font|1
+$--collapse-content-font-size: 13px !default;
+/// color||Color|0
+$--collapse-content-font-color: $--color-text-primary !default;
+
+
+// datepicker.scss
+/* DatePicker
+--------------------------*/
+$--datepicker-width: 252px !default;
+$--datepicker-width-sidebar: 366px !default;
+$--datepicker-width-sidebar-hastime: 366px !default;
+$--datepicker-content-width: 224px !default;
+
+$--datepicker-font-color: $--color-text-regular !default;
+/// color|1|Color|0
+$--datepicker-off-font-color: $--color-text-placeholder !default;
+/// color||Color|0
+$--datepicker-header-font-color: $--color-text-regular !default;
+$--datepicker-header-margin: 5px !default;
+$--datepicker-icon-color: $--color-text-primary !default;
+$--datepicker-border-color: $--disabled-border-base !default;
+$--datepicker-inner-border-color: #e4e4e4 !default;
+/// color||Color|0
+$--datepicker-inrange-background-color: $--color-primary!default;
+/// color||Color|0
+$--datepicker-inrange-hover-background-color: $--color-primary !default;
+/// color||Color|0
+$--datepicker-active-color: $--color-primary !default;
+$--datepicker-active-color-invert: $--color-white !default;
+/// color||Color|0
+$--datepicker-hover-font-color: $--color-primary !default;
+$--datepicker-cell-hover-color: #fff !default;
+
+$--datepicker-content-padding-top: 0px !default;
+$--datepicker-content-margin-top: 0px !default;
+$--datepicker-cell-padding: 0px !default;
+$--datepicker-border-bottom-width: 0px !default;
+
+// dialog.scss
+/* Dialog
+-------------------------- */
+/// color||background|1
+$--dialog-background-color: $--color-white !default;
+$--dialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
+/// fontSize||Font|1
+$--dialog-title-font-size: $--font-size-large !default;
+/// fontSize||Font|1
+$--dialog-content-font-size: $--font-size-base !default;
+/// fontLineHeight||LineHeight|2
+$--dialog-font-line-height: $--font-line-height-primary !default;
+/// padding||Spacing|3
+$--dialog-padding-primary: 20px !default;
+/// padding||Spacing|3
+$--dialog-header-padding: 0 $--dialog-padding-primary !default;
+/// height||LineHeight|2
+$--dialog-header-line-height: 46px !default;
+
+$--dialog-header-button-padding: 0px !default;
+$--dialog-header-button-top: 0px !default;
+
+$--dialog-border:  $--border-base !default;
+
+$--dialog-footer-display: inline-flex !default;
+$--dialog-footer-flex-direction: row-reverse !default;
+$--dialog-footer-button-margin-left: $--margin-mini !default;
+
+// dropdown.scss
+/* Dropdown
+-------------------------- */
+$--dropdown-menu-box-shadow: $--box-shadow-light !default;
+$--dropdown-menuItem-hover-fill: $--color-primary-light-9 !default;
+$--dropdown-menuItem-hover-color: $--link-color !default;
+$--dropdown-button-float: left !default;
+$--dropdown-button-margin-left: -1px !default;
+
+// form.scss
+/* Form
+-------------------------- */
+/// fontSize||Font|1
+$--form-label-font-size: $--font-size-base !default;
+
+$--form-item-margin-bottom: $--margin-medium;
+
+$--form-item-medium-line-height: $--height-medium;
+$--form-item-base-line-height: $--height-base;
+$--form-item-samll-line-height: $--height-base;
+$--form-item-mini-line-height: $--height-mini;
+
+// group.scss
+/* Group
+-------------------------- */
+$--group-option-flex: 0 0 (1/5) * 100% !default;
+$--group-option-offset-bottom: 12px !default;
+$--group-option-fill-hover: rgba($--color-black, 0.06) !default;
+$--group-title-color: $--color-black !default;
+$--group-title-font-size: $--font-size-base !default;
+$--group-title-width: 66px !default;
+
+
+// input.scss
+/* Input
+-------------------------- */
+$--input-font-size: $--font-size-base !default;
+/// color||Color|0
+$--input-font-color: $--color-text-regular !default;
+/// height||Other|4
+$--input-width: 140px !default;
+/// height||Other|4
+$--input-height: $--height-base !default;
+$--input-border: $--border-base !default;
+$--input-border-color: $--border-color-base !default;
+/// borderRadius||Border|2
+$--input-border-radius: $--border-radius-base !default;
+$--input-border-color-hover: $--border-color-hover !default;
+/// color||Color|0
+$--input-background-color: $--color-white !default;
+$--input-fill-disabled: $--disabled-fill-base !default;
+$--input-color-disabled: $--font-color-disabled-base !default;
+/// color||Color|0
+$--input-icon-color: $--color-text-placeholder !default;
+/// color||Color|0
+$--input-placeholder-color: $--color-text-placeholder !default;
+$--input-max-width: 314px !default;
+
+$--input-placeholder-padding-vertical: 5px !default;
+$--input-placeholder-padding-horizantal: 8px !default;
+$--input-placeholder-padding-icon: 20px !default;
+
+$--input-hover-border: $--color-primary !default;
+$--input-clear-hover-color: $--color-text-secondary !default;
+
+$--input-focus-border: $--color-primary !default;
+$--input-focus-fill: $--color-white !default;
+
+$--input-disabled-fill: $--disabled-fill-base !default;
+$--input-disabled-border: $--disabled-border-base !default;
+$--input-disabled-color: $--disabled-color-base !default;
+$--input-disabled-placeholder-color: $--color-text-placeholder !default;
+
+/// fontSize||Font|1
+$--input-medium-font-size: 14px !default;
+/// height||Other|4
+$--input-medium-height: $--height-large !default;
+/// fontSize||Font|1
+$--input-small-font-size: 13px !default;
+/// height||Other|4
+$--input-small-height: $--height-base !default;
+/// fontSize||Font|1
+$--input-mini-font-size: 12px !default;
+/// height||Other|4
+$--input-mini-height: $--height-small !default;
+
+$--input-textarea-padding: 5px 5px !default;
+$--input-textarea-border: 1px solid #ff3c3c!important !default;
+
+$--input-number-mini-text-align: left !default;
+$--input-number-text-align: center !default;
+$--input-number-padding-left: 0px !default;
+
+$--input-number-width: 58px !default;
+$--input-number-medium-width: 200px !default;
+$--input-number-small-width: 130px !default;
+$--input-number-mini-width: $--input-number-width !default;
+
+// link.scss
+/* Link
+--------------------------*/
+/// fontSize||Font|1
+$--link-font-size: $--font-size-base !default;
+/// fontWeight||Font|1
+$--link-font-weight: $--font-weight-primary !default;
+/// color||Color|0
+$--link-default-font-color: $--color-text-regular !default;
+/// color||Color|0
+$--link-default-active-color: $--color-primary !default;
+/// color||Color|0
+$--link-disabled-font-color: $--color-text-placeholder !default;
+/// color||Color|0
+$--link-primary-font-color: $--color-primary !default;
+/// color||Color|0
+$--link-success-font-color: $--color-success !default;
+/// color||Color|0
+$--link-warning-font-color: $--color-warning !default;
+/// color||Color|0
+$--link-danger-font-color: $--color-danger !default;
+/// color||Color|0
+$--link-info-font-color: $--color-info !default;
+
+
+// loading.scss
+/* Loading
+--------------------------*/
+/// height||Other|4
+$--loading-spinner-size: 42px !default;
+/// height||Other|4
+$--loading-fullscreen-spinner-size: 50px !default;
+
+
+// menu.scss
+/* Menu
+--------------------------*/
+/// fontSize||Font|1
+$--menu-item-font-size: $--font-size-base !default;
+/// color||Color|0
+$--menu-item-font-color: $--color-text-primary !default;
+/// color||Color|0
+$--menu-background-color: $--color-white !default;
+$--menu-item-hover-fill: $--color-primary-light-9 !default;
+
+
+// message.scss
+/* Message
+-------------------------- */
+$--message-shadow: $--box-shadow-base !default;
+$--message-min-width: 380px !default;
+$--message-background-color: #edf2fc !default;
+$--message-padding: 15px 15px 15px 20px !default;
+/// color||Color|0
+$--message-close-icon-color: $--color-text-placeholder !default;
+/// height||Other|4
+$--message-close-size: 16px !default;
+/// color||Color|0
+$--message-close-hover-color: $--color-text-secondary !default;
+
+/// color||Color|0
+$--message-success-font-color: $--color-success !default;
+/// color||Color|0
+$--message-info-font-color: $--color-info !default;
+/// color||Color|0
+$--message-warning-font-color: $--color-warning !default;
+/// color||Color|0
+$--message-danger-font-color: $--color-danger !default;
+
+
+// messagebox.scss
+/* MessageBox
+-------------------------- */
+/// color||Color|0
+$--messagebox-title-color: $--color-text-primary !default;
+$--msgbox-width: 380px !default;
+$--msgbox-border-radius: $--radius-mini-small !default;
+/// fontSize||Font|1
+$--messagebox-font-size: $--font-size-large !default;
+/// fontSize||Font|1
+$--messagebox-content-font-size: $--font-size-base !default;
+/// color||Color|0
+$--messagebox-content-color: $--color-text-regular !default;
+/// fontSize||Font|1
+$--messagebox-error-font-size: 12px !default;
+$--msgbox-padding-primary: 15px !default;
+$--msgbox-padding-large: $--msgbox-padding-primary + 5 !default;
+$--msgbox-header-padding: 15px 20px 0px 20px !default;
+$--msgbox-btn-padding: 5px 20px 0 !default;
+/// color||Color|0
+$--messagebox-success-color: $--color-success !default;
+/// color||Color|0
+$--messagebox-info-color: $--color-info !default;
+/// color||Color|0
+$--messagebox-warning-color: $--color-warning !default;
+/// color||Color|0
+$--messagebox-danger-color: $--color-danger !default;
+$--messagebox-close-icon-color: $--icon-color !default;
+
+$--messagebox-footer-display: flex !default;
+$--messagebox-center-footer-display: inline-flex !default;
+$--messagebox-center-text-align: center !default;
+$--messagebox-footer-flex-direction: row-reverse !default;
+$--messagebox-footer-button-margin-left: $--margin-mini !default;
+
+// notification.scss
+/* Notification
+-------------------------- */
+$--notification-width: 330px !default;
+/// padding||Spacing|3
+$--notification-padding: 14px 26px 14px 13px !default;
+$--notification-radius: 8px !default;
+$--notification-shadow: $--box-shadow-light !default;
+/// color||Color|0
+$--notification-border-color: $--border-color-lighter !default;
+$--notification-icon-size: 24px !default;
+$--notification-close-font-size: 16px !default;
+$--notification-group-margin-left: 13px !default;
+$--notification-group-margin-right: 8px !default;
+/// fontSize||Font|1
+$--notification-content-font-size: $--font-size-base !default;
+/// color||Color|0
+$--notification-content-color: $--color-text-regular !default;
+/// fontSize||Font|1
+$--notification-title-font-size: 16px !default;
+/// color||Color|0
+$--notification-title-color: $--color-text-primary !default;
+
+/// color||Color|0
+$--notification-close-color: $--color-text-secondary !default;
+/// color||Color|0
+$--notification-close-hover-color: $--color-text-regular !default;
+
+/// color||Color|0
+$--notification-success-icon-color: $--color-success !default;
+/// color||Color|0
+$--notification-info-icon-color: $--color-info !default;
+/// color||Color|0
+$--notification-warning-icon-color: $--color-warning !default;
+/// color||Color|0
+$--notification-danger-icon-color: $--color-danger !default;
+
+
+
+// pagination.scss
+/* Pagination
+-------------------------- */
+/// fontSize||Font|1
+$--pagination-font-size: $--font-size-base !default;
+$--pagination-font-weight: normal !default;
+/// color||Color|0
+$--pagination-background-color: $--color-white !default;
+/// color||Color|0
+$--pagination-font-color: $--color-text-primary !default;
+$--pagination-border-radius: 3px !default;
+/// color||Color|0
+$--pagination-button-color: $--color-text-primary !default;
+/// height||Other|4
+$--pagination-button-width: 35.5px !default;
+$--pagination-button-border-width: 1px !default;
+/// height||Other|4
+$--pagination-button-height: 28px !default;
+/// width||Other|4
+$--pagination-button-width: 32px !default;
+/// line-height||Other|4
+$--pagination-line-height: 32px !default;
+/// color||Color|0
+$--pagination-button-disabled-color: $--color-text-placeholder !default;
+/// color||Color|0
+$--pagination-button-disabled-background-color: $--color-white !default;
+/// color||Color|0
+$--pagination-hover-color: $--color-primary !default;
+$--pagination-border-color: #d9d9d9 !default;
+$--pagination-color: #666 !default;
+
+// popconfirm.scss
+/* Popconfirm
+-------------------------- */
+$--popconfirm-footer-display: flex !default;
+$--popconfirm-footer-flex-direction: row-reverse !default;
+$--popconfirm-footer-button-margin-right: $--margin-mini !default;
+
+// popover.scss
+/* Popover
+-------------------------- */
+/// color||Color|0
+$--popover-background-color: $--color-white !default;
+/// fontSize||Font|1
+$--popover-font-size: $--font-size-base !default;
+/// color||Color|0
+$--popover-border-color: $--border-color-lighter !default;
+$--popover-arrow-size: 6px !default;
+/// padding||Spacing|3
+$--popover-padding: 12px !default;
+$--popover-padding-large: 18px 20px !default;
+/// fontSize||Font|1
+$--popover-title-font-size: 16px !default;
+/// color||Color|0
+$--popover-title-font-color: $--color-text-primary !default;
+
+
+// popup.scss
+/* Popup
+-------------------------- */
+/// color||Color|0
+$--popup-modal-background-color: $--color-black !default;
+/// opacity||Other|1
+$--popup-modal-opacity: 0.5 !default;
+
+
+// radio-group.scss
+/* Radio Group
+-------------------------- */
+$--radio-group-margin-left: $--margin-mini;
+$--radio-group-medium-margin-left: $--radio-group-margin-left;
+$--radio-group-small-margin-left: $--radio-group-margin-left;
+$--radio-group-mini-margin-left: $--radio-group-margin-left;
+
+
+// radio.scss
+/* Radio
+-------------------------- */
+/// fontSize||Font|1
+$--radio-font-size: $--font-size-base !default;
+/// fontWeight||Font|1
+$--radio-font-weight: $--font-weight-primary !default;
+/// color||Color|0
+$--radio-font-color: $--color-text-regular !default;
+$--radio-input-height: $--size-base !default;
+$--radio-input-width: $--size-base !default;
+/// borderRadius||Border|2
+$--radio-input-border-radius: $--border-radius-circle !default;
+/// color||Color|0
+$--radio-input-background-color: $--color-white !default;
+$--radio-input-border: $--border-base !default;
+/// color||Color|0
+$--radio-input-border-color: $--border-color-base !default;
+/// color||Color|0
+$--radio-icon-color: $--color-white !default;
+
+$--radio-disabled-input-border-color: $--disabled-border-base !default;
+$--radio-disabled-input-fill: $--disabled-fill-base !default;
+$--radio-disabled-icon-color: $--disabled-fill-base !default;
+
+$--radio-disabled-checked-input-border-color: $--disabled-border-base !default;
+$--radio-disabled-checked-input-fill: $--disabled-fill-base !default;
+$--radio-disabled-checked-icon-color: $--color-text-placeholder !default;
+
+/// color||Color|0
+$--radio-checked-font-color: $--color-primary !default;
+/// color||Color|0
+$--radio-checked-input-border-color: $--color-primary !default;
+/// color||Color|0
+$--radio-checked-input-background-color: $--color-white !default;
+/// color||Color|0
+$--radio-checked-icon-color: $--color-primary !default;
+
+$--radio-input-border-color-hover: $--color-primary !default;
+
+$--radio-margin-left: 0 !default;
+$--radio-margin-right: $--margin-mini !default;
+
+$--radio-bordered-height: $--height-base !default;
+$--radio-bordered-padding: 0px $--padding-inside-base !default;
+$--radio-bordered-medium-padding: 0px $--padding-inside-base !default;
+$--radio-bordered-small-padding: 0px $--padding-inside-base !default;
+$--radio-bordered-mini-padding: 0px $--padding-inside-base !default;
+$--radio-bordered-medium-input-height: $--size-base !default;
+$--radio-bordered-medium-input-width: $--size-base !default;
+$--radio-bordered-medium-height: $--height-large !default;
+$--radio-bordered-small-input-height: 12px !default;
+$--radio-bordered-small-input-width: 12px !default;
+$--radio-bordered-small-height: $--height-base  !default;
+$--radio-bordered-mini-input-height: 12px !default;
+$--radio-bordered-mini-input-width: 12px !default;
+$--radio-bordered-mini-height: $--height-small !default;
+
+/// fontSize||Font|1
+$--radio-button-font-size: $--font-size-base !default;
+/// color||Color|0
+$--radio-button-checked-background-color: $--color-primary !default;
+/// color||Color|0
+$--radio-button-checked-font-color: $--color-white !default;
+/// color||Color|0
+$--radio-button-checked-border-color: $--color-primary !default;
+$--radio-button-disabled-checked-fill: $--border-color-extra-light !default;
+
+
+
+// rate.scss
+/* Rate
+--------------------------*/
+$--rate-height: 20px !default;
+/// fontSize||Font|1
+$--rate-font-size: $--font-size-base !default;
+/// height||Other|3
+$--rate-icon-size: 18px !default;
+/// margin||Spacing|2
+$--rate-icon-margin: 6px !default;
+$--rate-icon-color: $--color-text-placeholder !default;
+
+
+// scrollbar.scss
+/* Scrollbar
+--------------------------*/
+$--scrollbar-background-color: rgba($--color-text-secondary, .3) !default;
+$--scrollbar-hover-background-color: rgba($--color-text-secondary, .5) !default;
+
+
+
+// select.scss
+/* Select
+-------------------------- */
+$--select-border-color-hover: $--border-color-hover !default;
+$--select-disabled-border: $--disabled-border-base !default;
+/// fontSize||Font|1
+$--select-font-size: $--font-size-base !default;
+$--select-close-hover-color: $--color-text-secondary !default;
+
+$--select-input-color: $--color-text-placeholder !default;
+$--select-multiple-input-color: #666 !default;
+/// color||Color|0
+$--select-input-focus-border-color: $--color-primary !default;
+/// fontSize||Font|1
+$--select-input-font-size: 14px !default;
+
+$--select-option-color: $--color-text-regular !default;
+$--select-option-disabled-color: $--color-text-placeholder !default;
+$--select-option-disabled-background: $--color-white !default;
+/// height||Other|4
+$--select-option-height: $--height-base !default;
+$--select-option-hover-background: $--background-color-base !default;
+/// color||Color|0
+$--select-option-selected-font-color: $--color-primary !default;
+$--select-option-selected-hover: $--background-color-base !default;
+
+$--select-group-color: $--color-info !default;
+$--select-group-height: $--height-base  !default;
+$--select-group-font-size: 12px !default;
+
+$--select-dropdown-background: $--color-white !default;
+$--select-dropdown-shadow: $--box-shadow-light !default;
+$--select-dropdown-empty-color: #999 !default;
+/// height||Other|4
+$--select-dropdown-max-height: 274px !default;
+$--select-dropdown-padding: 6px 0 !default;
+$--select-dropdown-empty-padding: 10px 0 !default;
+$--select-dropdown-border: solid 1px $--border-color-light !default;
+
+// slider.scss
+/* Slider
+--------------------------*/
+/// color||Color|0
+$--slider-main-background-color: $--color-primary !default;
+/// color||Color|0
+$--slider-runway-background-color: $--border-color-light !default;
+$--slider-button-hover-color: mix($--color-primary, black, 97%) !default;
+$--slider-stop-background-color: $--color-white !default;
+$--slider-disable-color: $--color-text-placeholder !default;
+$--slider-margin: 16px 0 !default;
+$--slider-border-radius: 3px !default;
+/// height|1|Other|4
+$--slider-height: 6px !default;
+/// height||Other|4
+$--slider-button-size: 16px !default;
+$--slider-button-wrapper-size: 36px !default;
+$--slider-button-wrapper-offset: -15px !default;
+
+
+// steps.scss
+/* Steps
+--------------------------*/
+$--steps-border-color: $--disabled-border-base !default;
+$--steps-border-radius: 4px !default;
+$--steps-padding: 20px !default;
+
+
+// switch.scss
+/* Switch
+-------------------------- */
+/// color||Color|0
+$--switch-on-color: $--color-primary !default;
+/// color||Color|0
+$--switch-off-color: $--border-color-base !default;
+/// fontSize||Font|1
+$--switch-font-size: $--font-size-base !default;
+$--switch-core-border-radius: 10px !default;
+// height||Other|4 TODO: width 代码写死的40px 所以下面这三个属性都没意义
+$--switch-width: 40px !default;
+// height||Other|4
+$--switch-height: 20px !default;
+// height||Other|4
+$--switch-button-size: 16px !default;
+
+$--switch-medium-width: 50px !default;
+$--switch-medium-height: 24px !default;
+$--switch-medium-button-size: 18px !default;
+$--switch-medium-font-size: 16px !default;
+$--switch-medium-margin-top: 2px !default;
+$--switch-medium-margin-left: 0px !default;
+
+$--switch-mini-width: 28px !default;
+$--switch-mini-height: 16px !default;
+$--switch-mini-button-size: 12px !default;
+$--switch-mini-font-size: 12px !default;
+$--switch-mini-margin-top: 1px !default;
+$--switch-mini-margin-left: 0px !default;
+
+
+// tab.scss
+/* Tab
+-------------------------- */
+$--tab-font-size: $--font-size-base !default;
+$--tab-border-line: 1px solid #e4e4e4 !default;
+$--tab-header-color-active: $--color-text-secondary !default;
+$--tab-header-color-hover: $--color-text-regular !default;
+$--tab-header-color: $--color-text-regular !default;
+$--tab-header-fill-active: rgba($--color-black, 0.06) !default;
+$--tab-header-fill-hover: rgba($--color-black, 0.06) !default;
+$--tab-vertical-header-width: 90px !default;
+$--tab-vertical-header-count-color: $--color-white !default;
+$--tab-vertical-header-count-fill: $--color-text-secondary !default;
+
+
+// table-column.scss
+/* Table Column
+-------------------------- */
+$--table-column-text-overflow: clip !default;
+
+// table.scss
+/* Table
+-------------------------- */
+/// color||Color|0
+$--table-border-color: $--border-color-base !default;
+$--table-border: 1px solid $--table-border-color !default;
+$--table-td-padding: 0px !default;
+$--table-th-padding: 0px !default;
+/// color||Color|0
+$--table-font-color: $--color-text-regular !default;
+/// color||Color|0
+$--table-header-font-color: $--color-text-secondary !default;
+/// color||Color|0
+$--table-row-hover-background-color: $--background-color-base !default;
+$--table-current-row-background-color: $--background-color-base !default;
+/// color||Color|0
+$--table-header-background-color: $--background-color-head-base !default;
+$--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
+$--table-sort-ascending-top: 5px !default;
+$--table-sort-descending-bottom: 7px !default;
+
+// tag.scss
+/* Tag
+-------------------------- */
+/// color||Color|0
+$--tag-info-color: $--color-info !default;
+/// color||Color|0
+$--tag-primary-color: $--color-primary !default;
+/// color||Color|0
+$--tag-success-color: $--color-success !default;
+/// color||Color|0
+$--tag-warning-color: $--color-warning !default;
+/// color||Color|0
+$--tag-danger-color: $--color-danger !default;
+/// fontSize||Font|1
+$--tag-font-size: 12px !default;
+$--tag-border-radius: 4px !default;
+$--tag-padding: 0 10px !default;
+
+$--tag-height: $--height-base !default;
+$--tag-medium-height: $--height-medium !default;
+$--tag-small-height: $--height-base !default;
+$--tag-mini-height: $--height-mini !default;
+
+// timeline.scss
+/* Timeline
+--------------------------*/
+$--timeline-node-size-normal: 12px !default;
+$--timeline-node-size-large: 14px !default;
+$--timeline-node-color: $--border-color-light !default;
+
+
+// tooltip.scss
+/* Tooltip
+-------------------------- */
+/// color|1|Color|0
+$--tooltip-fill: $--color-text-primary !default;
+/// color|1|Color|0
+$--tooltip-color: $--color-white !default;
+/// fontSize||Font|1
+$--tooltip-font-size: 12px !default;
+/// color||Color|0
+$--tooltip-border-color: $--color-text-primary !default;
+$--tooltip-arrow-size: 6px !default;
+/// padding||Spacing|3
+$--tooltip-padding: 10px !default;
+
+
+// transfer.scss
+/* Transfer
+--------------------------*/
+$--transfer-border-color: $--border-color-lighter !default;
+$--transfer-border-radius: $--border-radius-base !default;
+/// height||Other|4
+$--transfer-panel-width: 200px !default;
+/// height||Other|4
+$--transfer-panel-header-height: 40px !default;
+/// color||Color|0
+$--transfer-panel-header-background-color: $--background-color-base !default;
+/// height||Other|4
+$--transfer-panel-footer-height: 40px !default;
+/// height||Other|4
+$--transfer-panel-body-height: 246px !default;
+/// height||Other|4
+$--transfer-item-height: 30px !default;
+/// height||Other|4
+$--transfer-filter-height: 32px !default;
+
+
+// tree.scss
+/* Tree
+-------------------------- */
+/// color||Color|0
+$--tree-node-hover-background-color: $--background-color-base !default;
+/// color||Color|0
+$--tree-font-color: $--color-text-regular !default;
+/// color||Color|0
+$--tree-expand-icon-color: $--color-text-placeholder !default;
+
